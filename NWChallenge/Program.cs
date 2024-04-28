@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Specialized;
+using System.Text;
 
 public class Program
 {
@@ -8,18 +9,22 @@ public class Program
         // Problem 1: Sort Characters
         
         // Input 1
-        // Console.Write("Input one line of words (S) : ");
-        // string? problem1Input1 = Console.ReadLine();
-        // SortCharacters(problem1Input1 ?? string.Empty, out OrderedDictionary vowels, out OrderedDictionary consonants);
-        // PrintCharacters("Vowel Characters", vowels);
-        // PrintCharacters("Consonants Characters", consonants);
-        // 
-        // // Input 2
-        // Console.Write("Input one line of words (S) : ");
-        // string? problem1Input2 = Console.ReadLine();
-        // SortCharacters(problem1Input2 ?? string.Empty, out OrderedDictionary vowels2, out OrderedDictionary consonants2);
-        // PrintCharacters("Vowel Characters", vowels2);
-        // PrintCharacters("Consonants Characters", consonants2);
+        Console.Write("Input one line of words (S) : ");
+        string? problem1Input1 = Console.ReadLine();
+        SortCharacters(problem1Input1 ?? string.Empty, out OrderedDictionary vowels, out OrderedDictionary consonants);
+        Console.WriteLine(FormatCharacters("Vowel Characters : ", vowels));
+        Console.WriteLine(FormatCharacters("Consonants Characters : ", consonants));
+
+        Console.WriteLine();
+        
+        // Input 2
+        Console.Write("Input one line of words (S) : ");
+        string? problem1Input2 = Console.ReadLine();
+        SortCharacters(problem1Input2 ?? string.Empty, out OrderedDictionary vowels2, out OrderedDictionary consonants2);
+        Console.WriteLine(FormatCharacters("Vowel Characters", vowels2));
+        Console.WriteLine(FormatCharacters("Consonants Characters", consonants2));
+
+        Console.WriteLine();
 
         // --
 
@@ -33,6 +38,7 @@ public class Program
         if (!result)
         {
             Console.WriteLine("Oops error, input is not number");
+            return;
         }
 
         Console.Write("Input the number of members in the family (separated by a space) : ");
@@ -41,8 +47,43 @@ public class Program
         string strResult = CountBusDuringQuarantine(problem2Input1Line2, familyCount);
         Console.WriteLine(strResult);
 
-        // Input 2
+        Console.WriteLine();
 
+        // Input 2
+        Console.Write("Input the number of families : ");
+        string problem2Input2Line1 = Console.ReadLine() ?? string.Empty;
+
+        bool result2 = int.TryParse(problem2Input2Line1, out int familyCount2);
+        if (!result2)
+        {
+            Console.WriteLine("Oops error, input is not number");
+            return;
+        }
+
+        Console.Write("Input the number of members in the family (separated by a space) : ");
+        string problem2Input2Line2 = Console.ReadLine() ?? string.Empty;
+
+        string strResult2 = CountBusDuringQuarantine(problem2Input2Line2, familyCount2);
+        Console.WriteLine(strResult2);
+
+        Console.WriteLine();
+
+        // Input 3
+        Console.Write("Input the number of families : ");
+        string problem2Input3Line1 = Console.ReadLine() ?? string.Empty;
+
+        bool result3 = int.TryParse(problem2Input3Line1, out int familyCount3);
+        if (!result3)
+        {
+            Console.WriteLine("Oops error, input is not number");
+            return;
+        }
+
+        Console.Write("Input the number of members in the family (separated by a space) : ");
+        string problem2Input3Line2 = Console.ReadLine() ?? string.Empty;
+
+        string strResult3 = CountBusDuringQuarantine(problem2Input3Line2, familyCount3);
+        Console.WriteLine(strResult3);
     }
 
     // --
@@ -137,23 +178,23 @@ public class Program
         }
     }
 
-    public static void PrintCharacters(string header, OrderedDictionary orderedDict)
+    public static string FormatCharacters(string header, OrderedDictionary orderedDict)
     {
-        // print vowels
-        Console.WriteLine($"{header} : ");
+        StringBuilder strBuilder = new();
+
+        strBuilder.AppendLine(header);
         foreach (DictionaryEntry kvp in orderedDict)
         {
             int occurences = (int)kvp.Value;
             for (int i = 0; i < occurences; i++)
             {
-                Console.Write((char)kvp.Key);
+                strBuilder.Append(kvp.Key);
             }
         }
-        Console.WriteLine();
+
+        return strBuilder.ToString();
     }
     
     // -------------------------------------------------------------------------
     // -------------------------------------------------------------------------
-
-
 }
