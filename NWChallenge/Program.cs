@@ -26,11 +26,14 @@ public class Program
         // Problem 2: PSBB
         
         // Input 1
-
+        Console.Write("Input the number of families : ");
+        string? problem2Input1 = Console.ReadLine();
 
         // Input 2
 
     }
+
+    // --
 
     // -------------------------------------------------------------------------
     // -------------------------------------------------------------------------
@@ -64,16 +67,16 @@ public class Program
 
             if (IsVowelChar(lowered[i]))
             {
-                HandleOrderedDictionary(lowered, i, vowels);
+                HandleOrderedCharacters(lowered, i, vowels);
             }
             else
             {
-                HandleOrderedDictionary(lowered, i, consonants);
+                HandleOrderedCharacters(lowered, i, consonants);
             }
         }
     }
 
-    private static void HandleOrderedDictionary(string word, int index, OrderedDictionary ordered)
+    private static void HandleOrderedCharacters(string word, int index, OrderedDictionary ordered)
     {
         if (ordered.Contains(word[index]))
         {
